@@ -1,0 +1,1 @@
+../../../SignalServiceKit/src/Protocols/ContactsManagerProtocol.h

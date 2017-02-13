@@ -1,0 +1,1 @@
+../../../SCWaveformView/Sources/SCWaveformView.h
