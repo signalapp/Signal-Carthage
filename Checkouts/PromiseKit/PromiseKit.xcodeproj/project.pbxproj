@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49A5583D1DC33BD000E4D01B /* 03_JointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5583B1DC33BC800E4D01B /* 03_JointTests.swift */; };
+		49A5584D1DC5185900E4D01B /* 03_WrapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A5584B1DC5172F00E4D01B /* 03_WrapTests.swift */; };
+		5CEBAEDBCFC8EEA3C9059EAC /* 05_PromiseTupleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEBA3A1969A7992F3379177 /* 05_PromiseTupleTests.swift */; };
 		6314112B1D5978D700E24B9E /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B0AC571D595E1B00FA21D9 /* PromiseKit.framework */; };
 		631411311D5978EB00E24B9E /* PMKDefaultDispatchQueueTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635D641B1D59635300BC0AF5 /* PMKDefaultDispatchQueueTest.swift */; };
 		631411381D59795700E24B9E /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B0AC571D595E1B00FA21D9 /* PromiseKit.framework */; };
@@ -104,6 +107,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49A5583B1DC33BC800E4D01B /* 03_JointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = 03_JointTests.swift; path = Tests/CorePromise/03_JointTests.swift; sourceTree = "<group>"; };
+		49A5584B1DC5172F00E4D01B /* 03_WrapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = 03_WrapTests.swift; path = Tests/CorePromise/03_WrapTests.swift; sourceTree = "<group>"; };
+		5CEBA3A1969A7992F3379177 /* 05_PromiseTupleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = 05_PromiseTupleTests.swift; path = Tests/CorePromise/05_PromiseTupleTests.swift; sourceTree = "<group>"; };
 		630019221D596292003B4E30 /* PMKCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PMKCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6314112F1D5978D700E24B9E /* PMKDispatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PMKDispatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6314113C1D59795700E24B9E /* PMKBridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PMKBridgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,16 +259,19 @@
 				635D640F1D59635300BC0AF5 /* 03_HangTests.m */,
 				635D64101D59635300BC0AF5 /* 03_JoinTests.m */,
 				635D64111D59635300BC0AF5 /* 03_JoinTests.swift */,
+				49A5583B1DC33BC800E4D01B /* 03_JointTests.swift */,
 				635D64121D59635300BC0AF5 /* 03_RaceTests.swift */,
 				635D64131D59635300BC0AF5 /* 03_WhenConcurrentTests.swift */,
 				635D64141D59635300BC0AF5 /* 03_WhenTests.m */,
 				635D64151D59635300BC0AF5 /* 03_WhenTests.swift */,
+				49A5584B1DC5172F00E4D01B /* 03_WrapTests.swift */,
 				6352FDE41D69415D00680F48 /* 04_VerifySubclassing.swift */,
 				635D64161D59635300BC0AF5 /* 98_StressTests.swift */,
 				635D64171D59635300BC0AF5 /* 99_RegressionTests.swift */,
 				635D64181D59635300BC0AF5 /* Infrastructure.h */,
 				635D64191D59635300BC0AF5 /* Infrastructure.m */,
 				635D641A1D59635300BC0AF5 /* Infrastructure.swift */,
+				5CEBA3A1969A7992F3379177 /* 05_PromiseTupleTests.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -538,6 +547,7 @@
 			files = (
 				635D641E1D59635300BC0AF5 /* 02_CancellationTests.swift in Sources */,
 				635D64201D59635300BC0AF5 /* 02_ErrorUnhandlerTests.swift in Sources */,
+				49A5583D1DC33BD000E4D01B /* 03_JointTests.swift in Sources */,
 				635D64221D59635300BC0AF5 /* 02_ZalgoTests.swift in Sources */,
 				635D64211D59635300BC0AF5 /* 02_PMKManifoldTests.m in Sources */,
 				635D64251D59635300BC0AF5 /* 03_JoinTests.m in Sources */,
@@ -547,6 +557,7 @@
 				635D641D1D59635300BC0AF5 /* 01_PromiseTests.swift in Sources */,
 				635D64261D59635300BC0AF5 /* 03_JoinTests.swift in Sources */,
 				635D64231D59635300BC0AF5 /* 03_AfterTests.swift in Sources */,
+				49A5584D1DC5185900E4D01B /* 03_WrapTests.swift in Sources */,
 				6352FDE51D69415D00680F48 /* 04_VerifySubclassing.swift in Sources */,
 				635D642A1D59635300BC0AF5 /* 03_WhenTests.swift in Sources */,
 				635D64281D59635300BC0AF5 /* 03_WhenConcurrentTests.swift in Sources */,
@@ -556,6 +567,7 @@
 				635D642C1D59635300BC0AF5 /* 99_RegressionTests.swift in Sources */,
 				635D641C1D59635300BC0AF5 /* 01_AnyPromiseTests.m in Sources */,
 				635D642E1D59635300BC0AF5 /* Infrastructure.swift in Sources */,
+				5CEBAEDBCFC8EEA3C9059EAC /* 05_PromiseTupleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,8 +770,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4.0.4;
+				CURRENT_PROJECT_VERSION = 4.1.7;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -808,8 +822,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 4.0.4;
+				CURRENT_PROJECT_VERSION = 4.1.7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = "$(CURRENT_PROJECT_VERSION)";
+				DYLIB_CURRENT_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;

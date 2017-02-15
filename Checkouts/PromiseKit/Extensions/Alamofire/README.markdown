@@ -18,14 +18,14 @@ Of course, the whole point in promises is composability, so:
 ```swift
 func login() -> Promise<User> {
     let q = DispatchQueue.global()
-    UIApplication.shared.networkActivityIndicatorVisible = true
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
 
     return firstly { in
-        Alamofire.request(url, withMethod: .GET).responseData()
+        Alamofire.request(url, method: .get).responseData()
     }.then(on: q) { data in
         convertToUser(data)
     }.always {
-        UIApplication.shared.networkActivityIndicatorVisible = false
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 }
 
@@ -41,7 +41,7 @@ firstly {
 ## CococaPods
 
 ```ruby
-pod "PromiseKit/Alamofire" ~> 4.0
+pod 'PromiseKit/Alamofire', '~> 4.0'
 ```
 
 The extensions are built into `PromiseKit.framework` thus nothing else is needed.
@@ -49,7 +49,7 @@ The extensions are built into `PromiseKit.framework` thus nothing else is needed
 ## Carthage
 
 ```ruby
-github "PromiseKit/Alamofire" ~> 1.0
+github "PromiseKit/Alamofire-" ~> 1.0
 ```
 
 The extensions are built into their own framework:
