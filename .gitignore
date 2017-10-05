@@ -1,2 +1,13 @@
-Build
-build/
+# Ignore build artifacts. Generally, we'll just track the source
+# and build the frameworks ourselves
+/Build/*
+
+# Don't ignore newly added WebRTC files.
+# The syntax is kind of crazy, but without this pattern, we'll
+# miss new files added to the WebRTC.framework.
+!Build/
+Build/*
+!Build/iOS/
+Build/iOS/*
+!Build/iOS/WebRTC.framework/
+# (End WebRTC.framework whilelisting)
