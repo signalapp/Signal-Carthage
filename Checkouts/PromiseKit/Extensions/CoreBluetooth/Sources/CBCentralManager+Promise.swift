@@ -7,22 +7,18 @@ import PromiseKit
 
 private class CentralManager: CBCentralManager, CBCentralManagerDelegate {
   var retainCycle: CentralManager!
-  let (promise, fulfill, reject) = Promise<CBCentralManagerState>.pending()
+  let (promise, fulfill, _) = Promise<CBCentralManager>.pending()
 
   @objc fileprivate func centralManagerDidUpdateState(_ manager: CBCentralManager) {
     if manager.state != .unknown {
-      #if os(macOS)
-        fulfill(manager.state)
-      #else
-        fatalError("Please fix this!")
-      #endif
+      fulfill(manager)
     }
   }
 }
 
 extension CBCentralManager {
   /// A promise that fulfills when the state of CoreBluetooth changes
-  public class func state() -> Promise<CBCentralManagerState> {
+  public class func state() -> Promise<CBCentralManager> {
     let manager = CentralManager(delegate: nil, queue: nil, options: [CBCentralManagerOptionShowPowerAlertKey: false])
     manager.delegate = manager
     manager.retainCycle = manager

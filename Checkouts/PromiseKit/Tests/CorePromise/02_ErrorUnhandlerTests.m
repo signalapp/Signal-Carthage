@@ -18,8 +18,8 @@
             [ex fulfill];
         };
 
-        [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve) {
-            resolve([NSError errorWithDomain:@"a" code:5 userInfo:@{@1: @2}]);
+        (void) [AnyPromise promiseWithResolverBlock:^(PMKResolver resolve) {
+            resolve([NSError errorWithDomain:@"a" code:5 userInfo:@{@"1": @2}]);
         }];
     }
     [self waitForExpectationsWithTimeout:2 handler:nil];

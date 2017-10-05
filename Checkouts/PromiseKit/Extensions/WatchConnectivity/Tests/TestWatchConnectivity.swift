@@ -33,7 +33,7 @@ class WatchConnectivityTests: XCTestCase {
 
     func testFailure() {
         class MockFailSession: WCSession {
-            private override func sendMessage(_ message: [String : Any], replyHandler: (([String : Any]) -> Void)?, errorHandler: ((Error) -> Void)?) {
+             override func sendMessage(_ message: [String : Any], replyHandler: (([String : Any]) -> Void)?, errorHandler: ((Error) -> Void)?) {
                 errorHandler?(NSError(domain: "Test", code: 1, userInfo: [:]))
             }
         }

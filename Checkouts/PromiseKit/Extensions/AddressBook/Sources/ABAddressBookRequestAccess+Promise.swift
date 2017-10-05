@@ -78,7 +78,7 @@ extension NSError {
     fileprivate convenience init(CFError error: CoreFoundation.CFError) {
         let domain = CFErrorGetDomain(error) as String
         let code = CFErrorGetCode(error)
-        let info = CFErrorCopyUserInfo(error) as [NSObject: AnyObject]
+        let info = CFErrorCopyUserInfo(error) as? [String: Any] ?? [:]
         self.init(domain: domain, code: code, userInfo: info)
     }
 }
@@ -95,7 +95,7 @@ private func ABAddressBookRequestAccess() -> Promise<(Bool, ABAddressBook)> {
             if let error = error {
                 reject(NSError(CFError: error))
             } else {
-                fulfill(granted, book)
+                fulfill((granted, book))
             }
         }
     }

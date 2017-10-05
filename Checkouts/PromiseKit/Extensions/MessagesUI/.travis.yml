@@ -1,5 +1,15 @@
+os: osx
 language: objective-c
-osx_image: xcode8
+matrix:
+  include:
+    - osx_image: xcode8.2
+      env: PLAT=iOS SWFT=3.0
+    - osx_image: xcode8.3
+      env: PLAT=iOS SWFT=3.1
+    - osx_image: xcode9
+      env: PLAT=iOS SWFT=3.2
+    - osx_image: xcode9
+      env: PLAT=iOS SWFT=4.0
 
 before_install:
   - export UUID=$(instruments -s | ruby -e "ARGF.each_line{ |ln| ln =~ /iPhone SE .* \[(.*)\]/; if \$1; puts(\$1); exit; end }");
@@ -9,6 +19,6 @@ install:
 
 script:
   - set -o pipefail;
-    xcrun instruments -w "$UUID";
-    sleep 15;
-    xcodebuild -scheme PMKMessagesUI -destination "id=$UUID" test | xcpretty
+    open -b com.apple.iphonesimulator --args -CurrentDeviceUDID "$UUID";
+    xcodebuild -scheme PMKMessagesUI -destination "id=$UUID" SWIFT_VERSION=$SWFT clean build;
+    xcodebuild -scheme PMKMessagesUI -destination "id=$UUID" test;

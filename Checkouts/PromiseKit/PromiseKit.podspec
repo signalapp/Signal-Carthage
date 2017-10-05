@@ -3,6 +3,7 @@ Pod::Spec.new do |s|
 
   `xcodebuild -project PromiseKit.xcodeproj -showBuildSettings` =~ /CURRENT_PROJECT_VERSION = ((\d\.)+\d)/
   abort("No version detected") if $1.nil?
+  abort("Not tagged") unless `git tag`.split.include? $1
   s.version = $1
 
   s.source = {
@@ -137,17 +138,13 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Photos' do |ss|
-    ss.ios.source_files = ss.tvos.source_files = 'Extensions/Photos/Sources/*'
-    ss.ios.frameworks = ss.tvos.frameworks = 'Photos'
+    ss.ios.source_files = ss.tvos.source_files = ss.osx.source_files = 'Extensions/Photos/Sources/*'
+    ss.ios.frameworks = ss.tvos.frameworks = ss.osx.frameworks = 'Photos'
     ss.tvos.deployment_target = '10.0'
-    ss.dependency 'PromiseKit/CorePromise'
-    
-    # respecify due to CocoaPods bug where specifying any
-    # deployment_target on a subspec causes all other platforms
-    # to not inherit deployment targets from their parent spec
+    # CocoaPods sucks: can’t enable this until Xcode 9 is released or lint fails
+    #ss.osx.deployment_target = '10.13'
     ss.ios.deployment_target = '8.0'
-    ss.osx.deployment_target = '10.10'
-    ss.watchos.deployment_target = '2.0'
+    ss.dependency 'PromiseKit/CorePromise'
   end
 
   s.subspec 'QuartzCore' do |ss|

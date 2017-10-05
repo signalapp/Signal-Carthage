@@ -47,7 +47,7 @@ class PromiseTests: XCTestCase {
     func testDispatchQueueAsyncExtensionCanThrowInBody() {
         let ex = expectation(description: "")
 
-        DispatchQueue.global().promise { _ -> Int in
+        DispatchQueue.global().promise { () -> Int in
             throw Error.dummy
         }.then { _ -> Void in
             XCTFail()
@@ -75,6 +75,13 @@ class PromiseTests: XCTestCase {
 
         let bad = Promise(value: ()).then { Error.dummy }
     }
+
+#if swift(>=3.1)
+    func testCanMakeVoidPromise() {
+        let promise = Promise()
+        XCTAssert(promise.value is Optional<Void>)
+    }
+#endif
 }
 
 private enum Error: Swift.Error {

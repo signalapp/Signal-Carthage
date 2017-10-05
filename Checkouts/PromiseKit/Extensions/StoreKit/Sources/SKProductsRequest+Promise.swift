@@ -13,7 +13,7 @@ import PromiseKit
 
     import PromiseKit
 */
-extension SKRequest {
+extension SKProductsRequest {
     /**
      Sends the request to the Apple App Store.
 
@@ -29,7 +29,7 @@ extension SKRequest {
 }
 
 
-private class SKDelegate: NSObject, SKProductsRequestDelegate {
+fileprivate class SKDelegate: NSObject, SKProductsRequestDelegate {
     let (promise, fulfill, reject) = Promise<SKProductsResponse>.pending()
     var retainCycle: SKDelegate?
 
@@ -43,7 +43,10 @@ private class SKDelegate: NSObject, SKProductsRequestDelegate {
         retainCycle = nil
     }
 
+#if swift(>=3.2)
+#else
     @objc override class func initialize() {
         NSError.registerCancelledErrorDomain(SKErrorDomain, code: SKError.Code.paymentCancelled.rawValue)
     }
+#endif
 }

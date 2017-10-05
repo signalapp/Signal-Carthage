@@ -1,14 +1,42 @@
+os: osx
 language: objective-c
-osx_image: xcode8
-
-env:
-  - ACTION=test  PLATFORM=Mac     DESTINATION='platform=OS X'
-  - ACTION=test  PLATFORM=iOS     DESTINATION='platform=iOS Simulator,name=iPhone 6S' UUID='7FC06F6D-AF72-4B38-9A96-1F934EA2E27F'
-  - ACTION=build PLATFORM=watchOS DESTINATION='platform=watchOS Simulator,name=Apple Watch - 38mm'
-  
+matrix:
+  include:
+    - osx_image: xcode8.2
+      env: PLAT=macOS SWFT=3.0
+    - osx_image: xcode8.2
+      env: PLAT=iOS SWFT=3.0
+    - osx_image: xcode8.3
+      env: PLAT=macOS SWFT=3.1
+    - osx_image: xcode8.3
+      env: PLAT=iOS SWFT=3.1
+    - osx_image: xcode9
+      env: PLAT=macOS SWFT=3.2
+    - osx_image: xcode9
+      env: PLAT=iOS SWFT=3.2
+    - osx_image: xcode9
+      env: PLAT=macOS SWFT=4.0
+    - osx_image: xcode9
+      env: PLAT=iOS SWFT=4.0
+before_install:
+  - case $PLAT in
+    iOS)
+      NAME="iPhone SE";;
+    esac;
+    if [ -n "$NAME" ]; then
+      export UUID=$(instruments -s | ruby -e "ARGF.each_line{ |ln| ln =~ /$NAME .* \[(.*)\]/; if \$1; puts(\$1); exit; end }");
+      export DESTINATION="id=$UUID";
+    fi
 install:
-  - carthage bootstrap --platform $PLATFORM
-
+  - carthage bootstrap --platform $PLAT
 script:
-  - if [ -n "$UUID" ]; then xcrun instruments -w "$UUID" || true; sleep 15; fi
-  - set -o pipefail && xcodebuild -scheme PMKEventKit -destination "$DESTINATION" $ACTION | xcpretty
+  - set -o pipefail;
+    case $PLAT in
+    macOS)
+      xcodebuild -scheme PMKEventKit -quiet build clean SWIFT_VERSION=$SWFT;
+      xcodebuild -scheme PMKEventKit -quiet test;;
+    iOS)
+      open -b com.apple.iphonesimulator --args -CurrentDeviceUDID "$UUID";
+      xcodebuild -scheme PMKEventKit -quiet -destination "$DESTINATION" build clean SWIFT_VERSION=$SWFT;
+      xcodebuild -scheme PMKEventKit -quiet -destination "$DESTINATION" test;;
+    esac

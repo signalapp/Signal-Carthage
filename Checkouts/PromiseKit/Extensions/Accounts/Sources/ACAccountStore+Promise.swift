@@ -24,7 +24,7 @@ extension ACAccountStore {
         return Promise<Void> { fulfill, reject in
             requestAccessToAccounts(with: type, options: options, completion: { granted, error in
                 if granted {
-                    fulfill()
+                    fulfill(())
                 } else if let error = error {
                     reject(error)
                 } else {

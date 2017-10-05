@@ -36,7 +36,7 @@ The extensions are built into `PromiseKit.framework` thus nothing else is needed
 ## Carthage
 
 ```ruby
-github "PromiseKit/OMGHTTPURLRQ" ~> 1.0
+github "PromiseKit/OMGHTTPURLRQ-" ~> 1.0
 ```
 
 The extensions are built into their own framework:

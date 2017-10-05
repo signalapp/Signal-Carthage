@@ -1,12 +1,24 @@
+os: osx
 language: objective-c
-osx_image: xcode8
+matrix:
+  include:
+    - osx_image: xcode8.2
+      env: PLAT=iOS SWFT=3.0
+    - osx_image: xcode8.3
+      env: PLAT=iOS SWFT=3.1
+    - osx_image: xcode9
+      env: PLAT=iOS SWFT=3.2
+    - osx_image: xcode9
+      env: PLAT=iOS SWFT=4.0
 
-env:
-  - ACTION=test PLATFORM=iOS DESTINATION='platform=iOS Simulator,name=iPhone 6S' UUID='7FC06F6D-AF72-4B38-9A96-1F934EA2E27F'
+before_install:
+  - export UUID=$(instruments -s | ruby -e "ARGF.each_line{ |ln| ln =~ /iPhone SE .* \[(.*)\]/; if \$1; puts(\$1); exit; end }")
 
 install:
-  - carthage bootstrap --platform $PLATFORM
+  - carthage bootstrap --platform iOS
 
 script:
-  - if [ -n "$UUID" ]; then xcrun instruments -w "$UUID" || true; sleep 15; fi
-  - set -o pipefail && xcodebuild -scheme PMKAddressBook -destination "$DESTINATION" $ACTION | xcpretty
+  - set -o pipefail
+  - open -b com.apple.iphonesimulator --args -CurrentDeviceUDID "$UUID"
+  - xcodebuild -scheme PMKAddressBook -destination "id=$UUID" clean build SWIFT_VERSION=$SWFT
+  - xcodebuild -scheme PMKAddressBook -destination "id=$UUID" test

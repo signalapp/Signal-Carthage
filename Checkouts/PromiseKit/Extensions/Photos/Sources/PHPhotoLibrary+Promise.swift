@@ -1,7 +1,5 @@
 import Photos.PHPhotoLibrary
-#if !COCOAPODS
 import PromiseKit
-#endif
 
 /**
  To import the `PHPhotoLibrary` category:

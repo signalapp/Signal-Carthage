@@ -26,11 +26,8 @@ static id go(NSURLSession *, NSMutableURLRequest *);
 - (AnyPromise *)GET:(id)urlFormat, ... {
     id err;
     id rq = PMKURLRequestFromURLFormat(&err, urlFormat);
-    if (err) {
-        return [AnyPromise promiseWithValue:err];
-    } else {
-        return go(self, rq);
-    }
+    if (err) return [AnyPromise promiseWithValue:err];
+    return go(self, rq);
 }
 
 - (AnyPromise *)GET:(NSString *)url query:(NSDictionary *)params {
@@ -50,14 +47,14 @@ static id go(NSURLSession *, NSMutableURLRequest *);
 - (AnyPromise *)POST:(NSString *)urlString JSON:(NSDictionary *)params {
     id err;
     id rq = [OMGHTTPURLRQ POST:urlString JSON:params error:&err];
-    if (err) [AnyPromise promiseWithValue:err];
+    if (err) return [AnyPromise promiseWithValue:err];
     return go(self, rq);
 }
 
 - (AnyPromise *)PUT:(NSString *)url formURLEncodedParameters:(NSDictionary *)params {
     id err;
     id rq = [OMGHTTPURLRQ PUT:url:params error:&err];
-    if (err) [AnyPromise promiseWithValue:err];
+    if (err) return [AnyPromise promiseWithValue:err];
     return go(self, rq);
 
 }
@@ -65,14 +62,14 @@ static id go(NSURLSession *, NSMutableURLRequest *);
 - (AnyPromise *)DELETE:(NSString *)url formURLEncodedParameters:(NSDictionary *)params {
     id err;
     id rq = [OMGHTTPURLRQ DELETE:url :params error:&err];
-    if (err) [AnyPromise promiseWithValue:err];
+    if (err) return [AnyPromise promiseWithValue:err];
     return go(self, rq);
 }
 
 - (AnyPromise *)PATCH:(NSString *)url JSON:(NSDictionary *)params {
     id err;
     id rq = [OMGHTTPURLRQ PATCH:url JSON:params error:&err];
-    if (err) [AnyPromise promiseWithValue:err];
+    if (err) return [AnyPromise promiseWithValue:err];
     return go(self, rq);
 }
 
