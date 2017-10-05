@@ -2,12 +2,19 @@
 # and build the frameworks ourselves
 /Build/*
 
+# Ignore build artifacts.
+# We explicitly blacklist some unwanted build artifacts
+# rather than risk missing newly added source files.
+Checkouts/PromiseKit/Build/
+Checkouts/ZXingObjC/Carthage/
+
 # Don't ignore newly added WebRTC files.
 # The syntax is kind of crazy, but without this pattern, we'll
 # miss new files added to the WebRTC.framework.
-!Build/
-Build/*
-!Build/iOS/
-Build/iOS/*
-!Build/iOS/WebRTC.framework/
+!/Build/
+/Build/*
+!/Build/iOS/
+/Build/iOS/*
+!/Build/iOS/WebRTC.framework/
 # (End WebRTC.framework whilelisting)
+
