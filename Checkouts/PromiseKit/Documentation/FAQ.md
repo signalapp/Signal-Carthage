@@ -85,8 +85,10 @@ when(fulfilled: p1, p2).catch { error in
 
 ## Is PromiseKit “heavy”?
 
-No, PromiseKit is hardly any sources in fact, it’s actually pretty light. Any
-weight relative to other promise implementations is 6 years of bug fixes.
+No, PromiseKit is hardly any sources in fact, it is “light-weight”. Any
+“weight” relative to other promise implementations is 6 years of bug fixes or 
+important things like [Zalgo prevention](http://blog.izs.me/post/59142742143/designing-apis-for-asynchrony)
+that hobby-project implementations don’t consider.
 
 ## Why is debugging hard?
 
@@ -173,6 +175,30 @@ func foo() -> Promise<Any>
 
 Who chooses when this promise starts? The answer is: Alamofire does and in this
 case, it “starts” immediately when `foo()` is called.
+
+## What is a good way to use Firebase with PromiseKit
+
+There is no good way to use Firebase with PromiseKit. See the next question for rationale.
+
+The best option is to embed your chain in your firebase handler:
+
+```
+foo.observe(.value) { snapshot in
+    firstly {
+        bar(with: snapshot)
+    }.then {
+        baz()
+    }.then {
+        baffle()
+    }.catch {
+        //…
+    }
+}
+```
+
+## I need my `then` to fire multiple times
+
+Then we’re afraid that you cannot use PromiseKit for that event. Promises only resolve `once`, this is the fundamental nature of promises and is considered a feature since it gives you guarantees about the flow of your chains.
 
 ## My question was not answered
 

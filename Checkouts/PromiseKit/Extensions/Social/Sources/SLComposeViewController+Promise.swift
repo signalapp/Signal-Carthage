@@ -25,7 +25,7 @@ extension UIViewController {
                 if result == .cancelled {
                     reject(SLComposeViewController.PMKError.cancelled)
                 } else {
-                    fulfill()
+                    fulfill(())
                 }
             }
         }
