@@ -1,0 +1,35 @@
+## WebRTC Build Details
+
+To track down potential future issues, we log some of our build environment details.
+
+webrtc git branch:
+(HEAD detached at dc5904661)
+
+webrtc git sha:
+dc5904661c4c8b357e19595d80b2881db3f4a71b
+
+build_script git sha:
+2a793074f4cfd6f9ed121724b52963de68134372
+
+xcodebuild -version:
+Xcode 9.2
+Build version 9C40b
+
+xcode-select -p:
+/Applications/Xcode.app/Contents/Developer
+
+gcc -v:
+Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 9.0.0 (clang-900.0.39.2)
+Target: x86_64-apple-darwin16.7.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+osx_version_details:
+ProductName:	Mac OS X
+ProductVersion:	10.12.6
+BuildVersion:	16G1212
+
+hostname:
+oak.local
+
