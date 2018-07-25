@@ -3,13 +3,13 @@
 To track down potential future issues, we log some of our build environment details.
 
 webrtc git branch:
-(HEAD detached at 89c6af1578)
+(HEAD detached at 202c6e9519)
 
 webrtc git sha:
-89c6af1578dd6ed086fd144fdd19ae5fa7183435
+202c6e951949a913609151ebce91ff4437d8c4f1
 
 build_script git sha:
-5b38e45b49501ff760a69ff1bf7d6c5a07459b58
+e799057d050b88545b625de79770a4c6186accc7
 
 xcodebuild -version:
 Xcode 9.4.1
@@ -31,5 +31,5 @@ ProductVersion:	10.13.5
 BuildVersion:	17F77
 
 hostname:
-android-d80e0eba8b3d160
+oak.local
 
